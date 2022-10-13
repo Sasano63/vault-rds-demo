@@ -3,7 +3,7 @@ output "address" {
   description = "Address of the db instance"
 }
 
-output "address" {
+output "endpoint" {
   value = aws_db_instance.rds-db.endpoint
   description = "Endpoint of the db instance"
 }
