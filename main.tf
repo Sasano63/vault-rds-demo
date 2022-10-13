@@ -16,7 +16,7 @@ terraform {
 data "terraform_remote_state" "hcp" {
   backend = "remote"
 
-  config {
+  config = {
     organization = "sasano"
     workspaces = {
       name = "vault-hcp-demo"
