@@ -1,9 +1,9 @@
-variable "client-id" {
-    description = "service-principal-key-client-id"
-}
-variable "client-secret" {
-    description = "service-principal-key-client-secret"
-}
+# variable "client-id" {
+#     description = "service-principal-key-client-id"
+# }
+# variable "client-secret" {
+#     description = "service-principal-key-client-secret"
+# }
 
 variable "region" {
     description = "AWS region into which HCP Vault as well as AWS resources are to be deployed"
