@@ -23,9 +23,9 @@ resource "aws_subnet" "subnet2" {
   }
 }
 
-resource "aws_db_instance" "rdsdb" {
+resource "aws_db_instance" "rds-db" {
   allocated_storage    = 10
-  db_name              = "${var.prefix}-vault-demo-instance"
+  db_name              = "vaultdemoinstance"
   engine               = "mysql"
   engine_version       = "8.0.28"
   instance_class       = "db.t3.micro"
