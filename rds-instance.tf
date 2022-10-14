@@ -23,6 +23,11 @@ resource "aws_subnet" "subnet2" {
   }
 }
 
+resource "aws_route_table_association" "rtb_subnet1" {
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = data.terraform_remote_state.hcp.outputs.rtb
+}
+
 resource "aws_db_subnet_group" "db-subnetgroup" {
   name       = "dbsubnetgroup"
   subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
