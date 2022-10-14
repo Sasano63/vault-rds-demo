@@ -21,16 +21,16 @@ resource "vault_database_secret_backend_role" "role-long" {
   backend             = vault_mount.db.path
   name                = "demo-long"
   db_name             = vault_database_secret_backend_connection.mysql.name
-  creation_statements = "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL ON my_app.* TO '{{name}}'@'%';"
-  default_ttl         = "1h" 
-  max_ttl             = "24h"
+  creation_statements = ["CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL ON my_app.* TO '{{name}}'@'%';"]
+  default_ttl         = "3600" 
+  max_ttl             = "86400"
 }
 
 resource "vault_database_secret_backend_role" "role-short" {
   backend             = vault_mount.db.path
   name                = "demo-short"
   db_name             = vault_database_secret_backend_connection.mysql.name
-  creation_statements = "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL ON my_app.* TO '{{name}}'@'%';"
-  default_ttl         = "3m" 
-  max_ttl             = "10m"
+  creation_statements = ["CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL ON my_app.* TO '{{name}}'@'%';"]
+  default_ttl         = "360" 
+  max_ttl             = "600"
 }
