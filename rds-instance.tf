@@ -23,14 +23,24 @@ resource "aws_subnet" "subnet2" {
   }
 }
 
+resource "aws_db_subnet_group" "db-subnetgroup" {
+  name       = "dbsubnetgroup"
+  subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+
+  tags = {
+    Name = "Vault DB subnet group"
+  }
+}
+
 resource "aws_db_instance" "rds-db" {
   allocated_storage    = 10
   db_name              = "vaultdemoinstance"
   engine               = "mysql"
   engine_version       = "8.0.28"
   instance_class       = "db.t3.micro"
-  username             = "admin"
+  username             = var.username
   password             = var.dbpassword
+  db_subnet_group_name = aws_db_subnet_group.db-subnetgroup.name
   skip_final_snapshot  = true
 }
 

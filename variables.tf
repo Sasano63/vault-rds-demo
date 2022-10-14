@@ -21,6 +21,9 @@ variable "dbpassword" {
     default = "supergeheim"
 }
 
+variable "username" {
+    default = "admin"
+}
 variable "prefix" {
     type = string
     default = ""
