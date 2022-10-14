@@ -42,5 +42,6 @@ resource "aws_db_instance" "rds-db" {
   password             = var.dbpassword
   db_subnet_group_name = aws_db_subnet_group.db-subnetgroup.name
   skip_final_snapshot  = true
+  publicly_accessible  = true
 }
 
