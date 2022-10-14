@@ -25,8 +25,6 @@ data "terraform_remote_state" "hcp" {
 }
 
 provider "vault" {
-  address = data.terraform_remote_state.hcp.outputs.primary_vault_private_endpoint_url
-  token   = data.terraform_remote_state.hcp.outputs.primary_token
 }
 
 provider "aws" {
