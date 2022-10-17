@@ -13,26 +13,27 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "vault" {
-  backend = "remote"
-
-  config = {
-    organization = "sasano"
-    workspaces = {
-      name = "aws-vault-demo-deployment"
-    }
-  }
-}
-# data "terraform_remote_state" "hcp" {
+# data "terraform_remote_state" "vault" {
 #   backend = "remote"
 
 #   config = {
 #     organization = "sasano"
 #     workspaces = {
-#       name = "vault-hcp-demo"
+#       name = "aws-vault-demo-deployment"
 #     }
 #   }
 # }
+
+data "terraform_remote_state" "hcp" {
+  backend = "remote"
+
+  config = {
+    organization = "sasano"
+    workspaces = {
+      name = "vault-hcp-demo"
+    }
+  }
+}
 
 
 provider "vault" {

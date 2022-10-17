@@ -1,4 +1,32 @@
 
+# data "template_file" "user_data" {
+#   template = file("${path.module}/vault.sh")
+#   vars = {
+#     license = "${var.VAULT_LICENSE}"
+#     account_id = "${var.account_id}"
+#   }
+# }
+# resource "aws_instance" "vaultserver" {                    
+#   ami                         = var.ami 
+#   instance_type               = var.instance_type
+#   key_name                    = var.key
+#   vpc_security_group_ids      = []
+#   associate_public_ip_address = true
+#   user_data                   = data.template_file.user_data.rendered
+#   iam_instance_profile        = var.iam_profile
+#   ebs_block_device {
+#     device_name = var.device_name
+#     delete_on_termination = true
+#     volume_type = var.volume_type
+#     volume_size = var.volume_size
+#   }
+#   tags = {
+#     Name = var.instance_name
+#     project = "vault"
+#   }
+# }
+
+
 
 # resource "vault_mount" "db" {
 #   path = "mysql"

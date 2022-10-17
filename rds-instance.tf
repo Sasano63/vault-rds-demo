@@ -33,9 +33,18 @@
 #   route_table_id = data.terraform_remote_state.hcp.outputs.rtb
 # }
 
+# resource "aws_db_subnet_group" "db-subnetgroup" {
+#   name       = "dbsubnetgroup"
+#   subnet_ids = [data.terraform_remote_state.vault.outputs.subnet1, data.terraform_remote_state.vault.outputs.subnet2, data.terraform_remote_state.vault.outputs.subnet3]
+
+#   tags = {
+#     Name = "Vault DB subnet group"
+#   }
+# }
+
 resource "aws_db_subnet_group" "db-subnetgroup" {
   name       = "dbsubnetgroup"
-  subnet_ids = [data.terraform_remote_state.vault.outputs.subnet1, data.terraform_remote_state.vault.outputs.subnet2, data.terraform_remote_state.vault.outputs.subnet3]
+  subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 
   tags = {
     Name = "Vault DB subnet group"
