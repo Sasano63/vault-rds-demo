@@ -1,1 +1,1 @@
-# WIP - Demo of configuration of DB secrets engine in Vault or HCP vault
+# WIP - Demo setup of RDS instance and scripts to configure it with HCP Vault
