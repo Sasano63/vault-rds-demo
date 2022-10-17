@@ -44,7 +44,7 @@
 
 resource "aws_db_subnet_group" "db-subnetgroup" {
   name       = "dbsubnetgroup"
-  subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+  subnet_ids = [data.terraform_remote_state.hcp.outputs.subnet1, data.terraform_remote_state.hcp.outputs.subnet2]
 
   tags = {
     Name = "Vault DB subnet group"
