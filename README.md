@@ -1,2 +1,2 @@
 # Demo setup of RDS instance with Terraform. 
-The database uses network resources from this repository and can be used to demonstrate (HCP) Vault dynamic database secrets.
+The database uses network resources from this repository https://github.com/Sasano63/vault-hcp-demo and can be used to demonstrate (HCP) Vault dynamic database secrets.
