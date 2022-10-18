@@ -9,8 +9,6 @@ terraform {
   }
 }
 
-
-
 data "terraform_remote_state" "hcp" {
   backend = "remote"
 
@@ -21,7 +19,6 @@ data "terraform_remote_state" "hcp" {
     }
   }
 }
-
 
 provider "aws" {
   region = var.region

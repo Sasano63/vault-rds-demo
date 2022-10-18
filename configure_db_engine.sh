@@ -1,13 +1,12 @@
 #!/bin/sh
 set -o xtrace
 
-# Note: This script requires that the VAULT_ADDR, VAULT_TOKEN, and MYSQL_ENDPOINT environment variables be set.
+# Note: This script requires that the VAULT_ADDR, VAULT_TOKEN, VAULT_NAMESPACE and MYSQL_ENDPOINT environment variables be set.
 # Example:
-export VAULT_ADDR=http://localhost:30000
-export VAULT_TOKEN=root
-export VAULT_NAMESPACE=dev
-export MYSQL_ENDPOINT=mysql:3306
-
+export VAULT_ADDR=
+export VAULT_TOKEN=
+export VAULT_NAMESPACE=admin
+export MYSQL_ENDPOINT=
 
 vault secrets enable database
 
@@ -19,8 +18,7 @@ vault write database/config/mysqldatabase \
     username="admin" \
     password="supergeheim"
 
-# Rotate root password
-vault write  -force database/rotate-root/mysqldatabase
+
 
 # Create a role with a longer TTL
 vault write database/roles/vault-demo-app-long \
@@ -33,10 +31,15 @@ vault write database/roles/vault-demo-app-long \
 vault write database/roles/vault-demo-app \
     db_name=mysqldatabase \
     creation_statements="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL ON my_app.* TO '{{name}}'@'%';" \
-    default_ttl="3m" \
+    default_ttl="2m" \
     max_ttl="6m"
 
+
+# Rotate root password
+vault write  -force database/rotate-root/mysqldatabase
 #test and generate dynamic username password
 vault read database/creds/vault-demo-app
+
+vault read database/creds/vault-demo-app-long
 
 echo "Database secret engine with mysql plugin configured "
